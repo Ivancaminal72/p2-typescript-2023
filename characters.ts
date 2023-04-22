@@ -9,9 +9,9 @@ export class Character {
   ) {}
 }
 
-export const loadUsers = async (num: number) => {
+export const loadCharacters = async (num: number) => {
   const characters: Array<Character> = [];
-  for(let i = 0; i < num; i++){
+  for(let i = 1; i < num; i++){
     const response = await fetch(`https://rickandmortyapi.com/api/character/${i}`);
     const result = await response.json() as any;
     characters.push(new Character(result.name, result.status, result.species, result.gender, result.image));

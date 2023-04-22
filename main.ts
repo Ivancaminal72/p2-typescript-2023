@@ -1,6 +1,6 @@
-import { Character, loadUsers } from "./users.js";
+import { Character, loadCharacters } from "./characters.js";
 
-//const users = await loadUsers(100);
+const characters = await loadCharacters(10);
 
 const path = require('path');
 const express = require('express')
@@ -11,7 +11,9 @@ app.set('view engine', 'pug')
 app.set("views", path.join(__dirname, "views"));
 
 app.get('/', (req, res) => {
-    res.render("characters")
+    res.render("characters", {
+        characters: characters
+    })
   })
   
 app.listen(port, () => {
