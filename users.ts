@@ -1,42 +1,21 @@
 
-export class User {
+export class Character {
   constructor(
-    public gender: "male" | "female",
-    public name: {
-      title: "Mr" | "Mrs";
-      first: string;
-      last: string;
-    },
-    public location: {
-      street: string;
-      city: string;
-      state: string;
-      country: string;
-      postcode: number;
-    },
-    public login: {
-      username: string;
-      password: string;
-    },
-    public email: string,
-    public picture: {
-      large: string;
-      medium: string;
-      thumbnail: string;
-    }
+    public name: string ,
+    public status: "Dead" | "Alive",
+    public species: string,
+    public gender: "Male" | "Female",
+    public image: string,
   ) {}
-
-  get fullName() {
-    return `${this.name.first} ${this.name.last}`;
-  }
 }
 
-export const loadUsers = async (n: number) => {
-  const response = await fetch(`https://randomuser.me/api?results=${n}`);
-  const { results } = (await response.json()) as { results: any[] };
-  const users: Array<User> = [];
-  for (const { gender, name, location, login, email, picture } of results) {
-    users.push(new User(gender, name, location, login, email, picture));
+export const loadUsers = async () => {
+  const characters: Array<Character> = [];
+  for(let i = 0; i < 100; i++){
+    const response = await fetch(`https://rickandmortyapi.com/api/character/${i}`);
+    const result = await response.json() as any;
+    characters.push(new Character(result.name, result.status, result.species, result.gender, result.image));
   }
-  return users;
+
+  return characters;
 };
