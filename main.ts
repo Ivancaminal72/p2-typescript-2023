@@ -1,11 +1,13 @@
 import { Character, loadCharacters } from "./characters.js";
 
-const characters = await loadCharacters(10);
+const characters = await loadCharacters(50);
 
 const path = require('path');
 const express = require('express')
 const app = express()
 const port = 3000
+
+app.use(express.static('public'));
 
 app.set('view engine', 'pug')
 app.set("views", path.join(__dirname, "views"));
