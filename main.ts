@@ -16,6 +16,13 @@ app.get('/', (req: any, res: any) => {
     })
   })
   
+app.get('/character', (req: any, res: any) => {
+    res.render("character", {
+        characters: characters,
+        id: req.query.id //Bug with bun version, SOLVED --> https://github.com/oven-sh/bun/issues/2344
+    })
+})
+
 app.listen(port, () => {
     console.log(`Example app listening on port ${port}`)
 })

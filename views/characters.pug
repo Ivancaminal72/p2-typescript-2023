@@ -6,7 +6,9 @@ html(lang="en")
         meta(name="viewport", content="width=device-width, initial-scale=1.0")
         title Characters 
     body
+        block sel_character
+        
         ul
         for character, idx in characters
             li
-                a(href="")=character.name
+                a(href="character?id=" + idx)=character.name
