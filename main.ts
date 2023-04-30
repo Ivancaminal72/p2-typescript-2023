@@ -2,8 +2,8 @@ import { Character, loadCharacters } from "./characters.js";
 
 const characters = await loadCharacters(50);
 
-const path = require('path');
-const express = require('express')
+import path from 'path';
+import express from 'express';
 const app = express()
 const port = 3000
 
